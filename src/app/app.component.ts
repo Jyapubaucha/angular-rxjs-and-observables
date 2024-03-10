@@ -36,14 +36,28 @@ export class AppComponent {
       //Observer
       //next, error, complete
 
-      this.myObservable.subscribe((val: any) => {
-        this.data.push(val);
-      },
-      (err)=>{ 
-        alert(err.messa);
-      },
-      () => {
-        alert("All the data has been rendered completely!");
+      // this.myObservable.subscribe((val: any) => {
+      //   this.data.push(val);
+      // },
+      // (err)=>{ 
+      //   alert(err.message);
+      // },
+      // () => {
+      //   alert("All the data has been rendered completely!");
+      // });
+
+                      //ANOTHER METHOD for observer
+
+      this.myObservable.subscribe({
+        next: (val: any) => {
+          this.data.push(val);
+        },
+        error(err){
+          alert(err.message);
+        },
+        complete(){
+          alert("All the data has been rendered completely!");
+        }
       });
   } 
 }
