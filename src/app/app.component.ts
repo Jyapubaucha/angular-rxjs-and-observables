@@ -22,11 +22,14 @@ export class AppComponent {
 
     setTimeout(()=>{ observer.next(3); },3000);
 
-    setTimeout(()=>{ observer.error(new Error('Something went wrong. Please try again later.')); },  3000);
+    // setTimeout(()=>{ observer.error(new Error('Something went wrong. Please try again later.')); },  3000);
 
     setTimeout(()=>{ observer.next(4); },4000);
 
     setTimeout(()=>{ observer.next(5); },5000);
+
+    setTimeout(()=>{ observer.complete(); },6000);
+
   });
 
   GetAsyncData(){
@@ -36,11 +39,11 @@ export class AppComponent {
       this.myObservable.subscribe((val: any) => {
         this.data.push(val);
       },
-      
       (err)=>{ 
-        alert(err.message);
-      }
-      );
-  }
-  
+        alert(err.messa);
+      },
+      () => {
+        alert("All the data has been rendered completely!");
+      });
+  } 
 }
