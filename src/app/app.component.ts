@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, from } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -35,7 +35,17 @@ export class AppComponent {
   // });
 
 
-  myObservable = of(this.array1, this.array2,20,30,'Deepak', true);
+  //For RxJS of() operator
+  // myObservable = of(this.array1, this.array2,20,30,'Deepak', true);
+
+  //For RxJS from()
+  // myObservable = from(this.array1)
+
+  //For RxJS from() operator from promise method
+  promiseData = new Promise((resolve, reject)=>{
+    resolve([10,20,30,40,50]);
+  });
+  myObservable = from(this.promiseData)
 
   GetAsyncData(){
       //Observer
