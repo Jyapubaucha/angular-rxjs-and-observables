@@ -2,7 +2,7 @@ import { AfterViewInit } from '@angular/core';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { Observable, of, from } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -59,11 +59,28 @@ export class AppComponent implements AfterViewInit {
   //For map method
     // myObservable = 2,,4,6,8,10
     // result = 10, 20, 30, 40, 50 which is multiplication by 5
-  myObservable = from([2,4,6,8,10]);
+    // myObservable = from([2,4,6,8,10]);
 
-  transferedObservable = this.myObservable.pipe(map((val)=>{
-    return val * 5;
-  }));
+    // transferedObservable = this.myObservable.pipe(map((val)=>{
+    //   return val * 5;
+    // }));
+
+  //For filter method
+    // myObservable = 2,4,6,8,10,12
+    // result = 10, 20, 30, 40, 50, 60 which is multiplication by 5.
+    // and filter the number which can be divisible by 4
+    myObservable = from([2,4,6,8,10,12]);
+
+    transferedObservable = this.myObservable.pipe(map((val)=>{
+      return val * 5;
+    }));
+
+    //20,40,60
+    filteredObservable = this.transferedObservable.pipe(filter((val, i) => {
+      return val % 4 === 0;
+    }));
+
+
 
   GetAsyncData(){
       //Observer
@@ -81,7 +98,7 @@ export class AppComponent implements AfterViewInit {
 
                       //ANOTHER METHOD for observer
 
-      this.transferedObservable.subscribe({
+      this.filteredObservable.subscribe({
         next: (val: any) => {
           this.data.push(val);
         },
