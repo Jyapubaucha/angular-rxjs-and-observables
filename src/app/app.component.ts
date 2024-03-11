@@ -69,13 +69,16 @@ export class AppComponent implements AfterViewInit {
     // myObservable = 2,4,6,8,10,12
     // result = 10, 20, 30, 40, 50, 60 which is multiplication by 5.
     // and filter the number which can be divisible by 4
-    myObservable = from([2,4,6,8,10,12]);
-
-    filteredObservable = this.myObservable.pipe(map((val)=>{
+    myObservable = from([2,4,6,8,10,12]).pipe(map((val)=>{
       return val * 5;
     }),filter((val, i) => {
       return val % 4 === 0;
     }));
+    // transferedObservable = this.myObservable.pipe(map((val)=>{
+    //   return val * 5;
+    // }),filter((val, i) => {
+    //   return val % 4 === 0;
+    // }));
 
     //20,40,60
     // filteredObservable = this.transferedObservable.pipe(filter((val, i) => {
@@ -100,7 +103,7 @@ export class AppComponent implements AfterViewInit {
 
                       //ANOTHER METHOD for observer
 
-      this.filteredObservable.subscribe({
+      this.myObservable.subscribe({
         next: (val: any) => {
           this.data.push(val);
         },
