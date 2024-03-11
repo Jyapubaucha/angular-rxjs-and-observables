@@ -71,14 +71,16 @@ export class AppComponent implements AfterViewInit {
     // and filter the number which can be divisible by 4
     myObservable = from([2,4,6,8,10,12]);
 
-    transferedObservable = this.myObservable.pipe(map((val)=>{
+    filteredObservable = this.myObservable.pipe(map((val)=>{
       return val * 5;
+    }),filter((val, i) => {
+      return val % 4 === 0;
     }));
 
     //20,40,60
-    filteredObservable = this.transferedObservable.pipe(filter((val, i) => {
-      return val % 4 === 0;
-    }));
+    // filteredObservable = this.transferedObservable.pipe(filter((val, i) => {
+    //   return val % 4 === 0;
+    // }));
 
 
 
