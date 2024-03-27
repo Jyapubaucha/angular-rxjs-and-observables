@@ -17,11 +17,16 @@ export class SubjectComponent implements OnInit {
     const subject = new BehaviorSubject<number>(100);
 
     // Subscribe 1
-     subject.subscribe((data) => { console.log(data)});
+     subject.subscribe((data) => { console.log("Subscribe 1: " + data)});
     // Subscribe 2
-    subject.subscribe((data) => { console.log(data)});
+    subject.subscribe((data) => { console.log("Subscribe 2: " + data)});
 
     subject.next(2020);
+
+    // Subscribe 3
+    subject.subscribe((data) => { console.log("Subscribe 3: " + data)});
+
+    subject.next(2023);
 
   
     //URL for random get method api "https://randomuser.me/api/"
