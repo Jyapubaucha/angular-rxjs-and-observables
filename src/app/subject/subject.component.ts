@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-subject',
@@ -9,12 +9,15 @@ import { Observable } from 'rxjs';
 export class SubjectComponent implements OnInit {
 
   ngOnInit(){
-    let obs = new Observable((observer) => { observer.next(Math.random())}); 
+    // let obs = new Observable((observer) => { observer.next(Math.random())}); 
+
+    const subject = new Subject();
 
     // Subscribe 1
-     obs.subscribe((data) => { console.log(data)});
+     subject.subscribe((data) => { console.log(data)});
     // Subscribe 2
-    obs.subscribe((data) => { console.log(data)});
+    subject.subscribe((data) => { console.log(data)});
 
+    subject.next(Math.random());
   }
 }
